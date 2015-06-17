@@ -6,23 +6,21 @@
 //  Copyright (c) 2015 Kevin Sylvestre. All rights reserved.
 //
 
-// https://github.com/Specta/Specta
-
-SpecBegin(InitialSpecs)
+SpecBegin(KSRegion)
 
 describe(@"these will fail", ^{
-
+    
     it(@"can do maths", ^{
         expect(1).to.equal(2);
     });
-
+    
     it(@"can read", ^{
         expect(@"number").to.equal(@"string");
     });
     
     it(@"will wait for 10 seconds and fail", ^{
         waitUntil(^(DoneCallback done) {
-        
+            
         });
     });
 });

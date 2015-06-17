@@ -14,8 +14,8 @@
 
 // KSGeography
 #define COCOAPODS_POD_AVAILABLE_KSGeography
-#define COCOAPODS_VERSION_MAJOR_KSGeography 0
-#define COCOAPODS_VERSION_MINOR_KSGeography 1
+#define COCOAPODS_VERSION_MAJOR_KSGeography 1
+#define COCOAPODS_VERSION_MINOR_KSGeography 0
 #define COCOAPODS_VERSION_PATCH_KSGeography 0
 
 // Specta

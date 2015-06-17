@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A421DB41B3224BF00F021D7 /* KSRegionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A421DB31B3224B400F021D7 /* KSRegionSpec.m */; };
 		46FB17360EA7AA01CB056F60 /* Pods_KSGeography_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A701E90F4612E4549E81C82 /* Pods_KSGeography_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6003F5BC195388D20070C39A /* KSCountrySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* KSCountrySpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A421DB31B3224B400F021D7 /* KSRegionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSRegionSpec.m; sourceTree = "<group>"; };
 		0E93845D18C790DB61B50E2D /* KSGeography.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KSGeography.podspec; path = ../KSGeography.podspec; sourceTree = "<group>"; };
 		1A701E90F4612E4549E81C82 /* Pods_KSGeography_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSGeography_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B316A78E6E363A937223995 /* Pods-KSGeography_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSGeography_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KSGeography_Tests/Pods-KSGeography_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -23,11 +25,11 @@
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Tests.xctest; path = KSGeography_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* KSGeography_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSGeography_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		6003F5BB195388D20070C39A /* KSCountrySpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSCountrySpec.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		B655001395A79C98D0F36C27 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EF5D288361D5F309E57AEC08 /* Pods-KSGeography_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSGeography_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSGeography_Tests/Pods-KSGeography_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -62,7 +64,7 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5AE195388D20070C39A /* Tests.xctest */,
+				6003F5AE195388D20070C39A /* KSGeography_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,8 +84,9 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
+				6003F5BB195388D20070C39A /* KSCountrySpec.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				0A421DB31B3224B400F021D7 /* KSRegionSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 			);
 			name = KSGeography_Tests;
 			productName = KSGeographyTests;
-			productReference = 6003F5AE195388D20070C39A /* Tests.xctest */;
+			productReference = 6003F5AE195388D20070C39A /* KSGeography_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -237,7 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
+				0A421DB41B3224BF00F021D7 /* KSRegionSpec.m in Sources */,
+				6003F5BC195388D20070C39A /* KSCountrySpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
