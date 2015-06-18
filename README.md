@@ -21,7 +21,7 @@ pod "KSGeography"
 ### Countries
 
 ```objc
-KSCountry *country = [KSCountry named:@"Canada"]; // <KSCountry name="Canada" code="CAN">
+KSCountry *country = [KSCountries.all named:@"Canada"]; // <KSCountry name="Canada" code="CAN">
 country.name; // "Canada"
 country.code; // "CAN"
 ```
@@ -29,7 +29,7 @@ country.code; // "CAN"
 ### Regions
 
 ```objc
-KSRegion *region = [country.regions named:@"Ontario"]; // <KSCountry name="Ontario" code="ON" type="province">
+KSRegion *region = [KSRegions.all named:@"Ontario"]; // <KSCountry name="Ontario" code="ON" type="province">
 region.name; // "Ontario"
 region.code; // "ON"
 ```
