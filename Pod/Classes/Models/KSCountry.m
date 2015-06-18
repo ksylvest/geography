@@ -52,4 +52,14 @@ const struct KSCountryAssociations KSCountryAssociations = {
         region.country = self;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<KSCountry name=%@ code=%@>",
+            self.name, self.code];
+}
+
 @end

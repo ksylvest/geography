@@ -53,4 +53,14 @@ const struct KSRegionAssociations KSRegionAssociations = {
     self.code = parameters[KSRegionAttributes.code];
 }
 
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Description
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<KSRegion type=%@ name=%@ code=%@>",
+            NSStringFromKSRegionType(self.type), self.name, self.code];
+}
+
 @end
