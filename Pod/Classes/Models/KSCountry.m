@@ -7,9 +7,49 @@
 //
 
 #import "KSCountry.h"
+#import "KSRegions.h"
+#import "KSRegion.h"
 
-@class KSRegions;
+const struct KSCountryAttributes KSCountryAttributes = {
+    .name = @"name",
+    .code = @"code",
+};
+
+const struct KSCountryAssociations KSCountryAssociations = {
+    .regions = @"regions",
+};
 
 @implementation KSCountry
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Lifecyce
+
+- (id)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.regions = [KSRegions new];
+    }
+    
+    return self;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Parsable
+
+- (void)parse:(NSDictionary *)parameters
+{
+    self.name = parameters[KSCountryAttributes.name];
+    self.code = parameters[KSCountryAttributes.code];
+    
+    [self.regions parse:parameters[KSCountryAssociations.regions]];
+    
+    for (KSRegion *region in self.regions.models)
+        region.country = self;
+}
 
 @end

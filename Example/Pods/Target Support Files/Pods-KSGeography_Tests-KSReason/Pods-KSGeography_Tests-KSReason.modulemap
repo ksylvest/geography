@@ -1,0 +1,6 @@
+framework module KSReason {
+  umbrella header "Pods-KSGeography_Tests-KSReason-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -6,10 +6,33 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import <KSReason/KSCollection.h>
 
-@interface KSRegions : NSObject
+@class KSRegion;
 
+/**
+ A collection of regions.
+ */
+@interface KSRegions : KSCollection
+
+/**
+ Factory for accessing a collection with all regions.
+ @return A collection with all regions.
+ */
 + (instancetype)all;
+
+/**
+ Find a region by code.
+ @param code The code of the region.
+ @return The region or NULL if not found.
+ */
+- (KSRegion *)named:(NSString *)name;
+
+/**
+ Find a region by code.
+ @param code The code of the country.
+ @return The region or NULL if not found.
+ */
+- (KSRegion *)coded:(NSString *)name;
 
 @end

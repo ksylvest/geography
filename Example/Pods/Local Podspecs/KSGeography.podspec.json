@@ -18,8 +18,11 @@
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",
   "resource_bundles": {
-    "KSGeography": [
-      "Pod/Assets/*.plist"
+    "KSGeography": "Pod/Assets/**/*"
+  },
+  "dependencies": {
+    "KSReason": [
+
     ]
   }
 }

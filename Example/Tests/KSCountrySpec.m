@@ -1,43 +1,27 @@
 //
-//  KSGeographyTests.m
+//  KSCountryTests.m
 //  KSGeographyTests
 //
 //  Created by Kevin Sylvestre on 06/17/2015.
 //  Copyright (c) 2015 Kevin Sylvestre. All rights reserved.
 //
 
+#import <KSGeography/KSCountry.h>
+
 SpecBegin(KSCountry)
 
-describe(@"these will fail", ^{
+describe(@"KSCountry", ^{
+    describe(@"#parse:", ^{
+        it(@"parses", ^{
+            KSCountry *country = [KSCountry new];
+            NSDictionary *parameters = @{ KSCountryAttributes.name: @"Canada",
+                                          KSCountryAttributes.code: @"CAN" };
+            
+            [country parse:parameters];
+            
+            expect(country.name).to.equal(@"Canada");
+            expect(country.code).to.equal(@"CAN");
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
-
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
-    
-    it(@"will wait for 10 seconds and fail", ^{
-        waitUntil(^(DoneCallback done) {
-        
-        });
-    });
-});
-
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^{
-        waitUntil(^(DoneCallback done) {
-            done();
         });
     });
 });

@@ -1,1 +1,0 @@
-/Users/kevin/Library/Developer/Xcode/DerivedData/KSGeography-dyibsctklnqgawfvbuwqppiymims/Build/Products/Debug-iphonesimulator/KSGeography.bundle

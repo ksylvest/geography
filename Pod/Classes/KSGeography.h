@@ -10,7 +10,7 @@
 #define KSReason_h
 
 #import <KSGeography/KSCountry.h>
-#import <KSGeography/KSCounries.h>
+#import <KSGeography/KSCountries.h>
 #import <KSGeography/KSRegion.h>
 #import <KSGeography/KSRegions.h>
 

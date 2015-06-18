@@ -17,5 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = { 'KSGeography' => ['Pod/Assets/*.plist'] }
+  s.resource_bundles = { 'KSGeography' => ['Pod/Assets/KSGeography.plist'] }
+
+  s.dependency 'KSReason'
 end

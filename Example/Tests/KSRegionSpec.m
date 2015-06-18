@@ -1,43 +1,28 @@
 //
-//  KSGeographyTests.m
+//  KSRegionTests.m
 //  KSGeographyTests
 //
 //  Created by Kevin Sylvestre on 06/17/2015.
 //  Copyright (c) 2015 Kevin Sylvestre. All rights reserved.
 //
 
+#import <KSGeography/KSRegion.h>
+
 SpecBegin(KSRegion)
 
-describe(@"these will fail", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
-    
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
-    
-    it(@"will wait for 10 seconds and fail", ^{
-        waitUntil(^(DoneCallback done) {
+describe(@"KSRegion", ^{
+    describe(@"#parse:", ^{
+        it(@"parses", ^{
+            KSRegion *region = [KSRegion new];
+            NSDictionary *parameters = @{ KSRegionAttributes.type: @"territory",
+                                          KSRegionAttributes.name: @"Yukon",
+                                          KSRegionAttributes.code: @"YT" };
             
-        });
-    });
-});
-
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^{
-        waitUntil(^(DoneCallback done) {
-            done();
+            [region parse:parameters];
+            
+            expect(region.type).to.equal(KSRegionTypeTerritory);
+            expect(region.name).to.equal(@"Yukon");
+            expect(region.code).to.equal(@"YT");
         });
     });
 });

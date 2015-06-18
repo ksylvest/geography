@@ -1,0 +1,1 @@
+../../../KSReason/Pod/Classes/Inflections/KSInflector.h
