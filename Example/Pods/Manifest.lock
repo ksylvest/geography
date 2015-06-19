@@ -2,7 +2,7 @@ PODS:
   - Expecta (1.0.0)
   - KSGeography (1.0.0):
     - KSReason
-  - KSReason (1.0.6)
+  - KSReason (1.0.7)
   - Specta (1.0.2)
 
 DEPENDENCIES:
@@ -16,8 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
-  KSGeography: d95124eb57d15e7fc156557a511f0ea432fb17fe
-  KSReason: 7cabdcb482997d7a3287973dafa60d3915532a38
+  KSGeography: 08615dc2dcaf16ab0564fff5d0ec3aadb214f408
+  KSReason: 105ea0f7821a82537170f97ea15b26e162184503
   Specta: 9cec98310dca411f7c7ffd6943552b501622abfe
 
 COCOAPODS: 0.37.2

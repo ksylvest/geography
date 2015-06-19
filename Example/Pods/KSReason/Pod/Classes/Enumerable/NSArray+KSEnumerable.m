@@ -14,7 +14,7 @@
 
 #pragma mark - Iterating
 
-- (void)KS_each:(KSArrayEachBlock)block
+- (void)KS_each:(KSIterableEachBlock)block
 {
     for (id object in self)
     {
@@ -22,7 +22,7 @@
     }
 }
 
-- (void)KS_eachi:(KSArrayEachIBlock)block
+- (void)KS_eachi:(KSIterableEachIBlock)block
 {
     NSInteger index = 0;
     for (id object in self)
@@ -35,7 +35,7 @@
 
 #pragma mark - Map
 
-- (NSArray *)KS_map:(KSArrayMapBlock)block
+- (instancetype)KS_map:(KSIterableMapBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -48,7 +48,7 @@
     return results;
 }
 
-- (NSArray *)KS_mapi:(KSArrayMapIBlock)block
+- (instancetype)KS_mapi:(KSIterableMapIBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -66,7 +66,7 @@
 
 #pragma mark - Reduce
 
-- (id)KS_reduce:(KSArrayReduceBlock)block memo:(id)memo
+- (id)KS_reduce:(KSIterableReduceBlock)block memo:(id)memo
 {
     for (id object in self)
     {
@@ -80,7 +80,7 @@
 
 #pragma mark - Find
 
-- (id)KS_find:(KSArrayTestBlock)block
+- (id)KS_find:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -94,7 +94,7 @@
 
 #pragma mark - Any
 
-- (BOOL)KS_any:(KSArrayTestBlock)block
+- (BOOL)KS_any:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -107,7 +107,7 @@
 
 #pragma mark - All
 
-- (BOOL)KS_all:(KSArrayTestBlock)block
+- (BOOL)KS_all:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -129,7 +129,7 @@
 
 #pragma mark - Filtering
 
-- (NSArray *)KS_filter:(KSArrayTestBlock)block
+- (instancetype)KS_filter:(KSIterableTestBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -148,7 +148,7 @@
 
 #pragma mark - Rejecting
 
-- (NSArray *)KS_reject:(KSArrayTestBlock)block
+- (NSArray *)KS_reject:(KSIterableTestBlock)block
 {
     return [self KS_filter:[self KS_negate:block]];
 }
@@ -158,7 +158,7 @@
 
 #pragma mark - Converters
 
-- (NSSet *)KS_set:(KSArrayMapBlock)block
+- (NSSet *)KS_set:(KSIterableMapBlock)block
 {
     NSMutableSet *results = [NSMutableSet setWithCapacity:self.count];
     
@@ -174,7 +174,7 @@
 
 #pragma mark - Negating
 
-- (KSArrayTestBlock)KS_negate:(KSArrayTestBlock)block
+- (KSIterableTestBlock)KS_negate:(KSIterableTestBlock)block
 {
     return ^BOOL (id object) { return !block(object); };
 }

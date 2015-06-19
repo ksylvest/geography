@@ -9,6 +9,8 @@
 #ifndef KSEnumerable_h
 #define KSEnumerable_h
 
+#import <KSReason/KSIterable.h>
+
 #import <KSReason/NSArray+KSEnumerable.h>
 #import <KSReason/NSDictionary+KSEnumerable.h>
 #import <KSReason/NSSet+KSEnumerable.h>

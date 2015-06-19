@@ -237,6 +237,62 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 }];
 ```
 
+### Validations
+
+#### Length
+
+```objc
+[KSValidator length:@"test" is:8]; // NO
+[KSValidator length:@"test" is:4]; // YES
+
+[KSValidator length:@"test" minimum:5]; // NO
+[KSValidator length:@"test" minimum:4]; // YES
+[KSValidator length:@"test" minimum:3]; // YES
+
+[KSValidator length:@"test" maximum:3]; // NO
+[KSValidator length:@"test" maximum:4]; // YES
+[KSValidator length:@"test" maximum:5]; // YES
+```
+
+### Format
+
+```objc
+[KSValidator format:@"tester" with:KSValidationEmail]; // NO
+[KSValidator format:@"tester@mail.org" with:KSValidationEmail]; // YES
+
+[KSValidator format:@"tester" with:KSValidationPhone]; // NO
+[KSValidator format:@"+1 555-555-5555" with:KSValidationPhone]; // YES
+
+[KSValidator format:@"..." with:@"\\A[a-z]+\\z"]; // NO
+[KSValidator format:@"abcdefghijklmnopqrstuvwxyz" with:@"\\A[a-z]+\\z"]; // YES
+```
+
+### Inclusion
+
+```objc
+[KSValidator inclusion:@"blue" collection:@[@"blue"]]; // YES
+[KSValidator inclusion:@"pink" collection:@[@"blue"]]; // NO
+```
+
+### Exclusion
+
+```objc
+[KSValidator exclusion:@"blue" collection:@[@"blue"]]; // YES
+[KSValidator exclusion:@"pink" collection:@[@"blue"]]; // NO
+```
+
+### Presence
+
+```objc
+[KSValidator presence:@"Greetings!"]; // YES
+```
+
+### Absence
+
+```objc
+[KSValidator absence:@"Greetings!"]; // NO
+```
+
 ### Inflections
 
 #### Pluralize
@@ -262,6 +318,41 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
   [inflector singular:@"oxen$" replacement:@"ox"];
   [inflector plural:@"ox$" replacement:@"oxen"];
 }];
+```
+
+### Existentialism
+
+#### Objects
+
+```objc
+[NSNull null].KS_exists; // NO
+[NSObject new].KS_exists; // YES
+```
+
+#### Sets
+
+```objc
+[NSSet set].KS_exists; // NO
+[NSSet setWithObject:object].KS_exists; // YES
+```
+
+#### Arrays
+```objc
+[NSArray set].KS_exists; // NO
+[NSArray setWithObject:object].KS_exists; // YES
+```
+
+#### Dictionaries
+```objc
+@{}.KS_exists;; // NO
+@{ key: value }.KS_exists; // YES
+```
+
+#### Strings
+
+```objc
+@"".KS_exists; // NO
+@"Greetings!".KS_exists; // YES
 ```
 
 ## Author
