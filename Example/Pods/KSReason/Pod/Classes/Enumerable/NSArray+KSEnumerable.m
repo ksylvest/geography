@@ -24,7 +24,7 @@
 
 - (void)KS_eachi:(KSIterableEachIBlock)block
 {
-    NSInteger index = 0;
+    NSUInteger index = 0;
     for (id object in self)
     {
         block(object, index++);
@@ -52,7 +52,7 @@
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
-    NSInteger index = 0;
+    NSUInteger index = 0;
     for (id object in self)
     {
         id mapped = block(object, index++);
@@ -71,6 +71,17 @@
     for (id object in self)
     {
         memo = block(memo, object);
+    }
+    
+    return memo;
+}
+
+- (id)KS_reducei:(KSIterableReduceIBlock)block memo:(id)memo
+{
+    NSUInteger index = 0;
+    for (id object in self)
+    {
+        memo = block(memo, object, index++);
     }
     
     return memo;
@@ -127,6 +138,15 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#pragma mark - Empty
+
+- (BOOL)KS_empty
+{
+    return !!self.count;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 #pragma mark - Filtering
 
 - (instancetype)KS_filter:(KSIterableTestBlock)block
@@ -177,6 +197,40 @@
 - (KSIterableTestBlock)KS_negate:(KSIterableTestBlock)block
 {
     return ^BOOL (id object) { return !block(object); };
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Finders
+
+- (id)KS_minimum
+{
+    return [self KS_reduce:^id(id memo, id object) {
+        if ([memo compare:object] == NSOrderedAscending) return memo;
+        else return object;
+    } memo:NULL];
+}
+
+- (id)KS_maximum
+{
+    return [self KS_reduce:^id(id memo, id object) {
+        if ([memo compare:object] == NSOrderedDescending) return memo;
+        else return object;
+    } memo:NULL];
+}
+
+- (id)KS_sample
+{
+    NSUInteger position = arc4random_uniform((int)self.count);
+    
+    NSInteger index = 0;
+    for (id object in self)
+    {
+        if (index != position) index++;
+        else return object;
+    }
+    
+    return NULL;
 }
 
 @end

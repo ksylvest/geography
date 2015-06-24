@@ -13,6 +13,7 @@ typedef void (^KSIterableEachIBlock)(id object, NSUInteger index);
 typedef id (^KSIterableMapBlock)(id object);
 typedef id (^KSIterableMapIBlock)(id object, NSUInteger index);
 typedef id (^KSIterableReduceBlock)(id memo, id object);
+typedef id (^KSIterableReduceIBlock)(id memo, id object, NSUInteger index);
 typedef BOOL (^KSIterableTestBlock)(id object);
 
 @protocol KSIterable <NSObject>
@@ -52,6 +53,14 @@ typedef BOOL (^KSIterableTestBlock)(id object);
 - (id)KS_reduce:(KSIterableReduceBlock)block memo:(id)memo;
 
 /**
+ An implementation of map from the map / reduce pattern that includes a helpful iteration index.
+ @param block A block with an object that is execute on every entry and a memo.
+ @param memo The inital memo (NULL is fine).
+ @return The value of memo that is returned after each block execution.
+ */
+- (id)KS_reducei:(KSIterableReduceIBlock)block memo:(id)memo;
+
+/**
  An implementation of find using a block for searching.
  @param block A block that is used for comparisons.
  */
@@ -78,6 +87,12 @@ typedef BOOL (^KSIterableTestBlock)(id object);
 - (NSUInteger)KS_size;
 
 /**
+ Helper for determining if the iterable is empty
+ @return A boolean of `YES` if the count is zero or `NO` otherwise.
+ */
+- (BOOL)KS_empty;
+
+/**
  Look through each entry in the Iterable returning all entries that pass the block test.
  @param block A block that is used for filtering.
  @return A filtered Iterable.
@@ -90,5 +105,23 @@ typedef BOOL (^KSIterableTestBlock)(id object);
  @return A rejected Iterable.
  */
 - (instancetype)KS_reject:(KSIterableTestBlock)block;
+
+/**
+ Find the minimum (note: the elements must implement the `compare:`).
+ @return The minimum.
+ */
+- (id)KS_minimum;
+
+/**
+ Find the minimum (note: the elements must implement the `compare:`).
+ @return The maximum.
+ */
+- (id)KS_maximum;
+
+/**
+ Produce a random sample from the collection.
+ @return A sample.
+ */
+- (id)KS_sample;
 
 @end

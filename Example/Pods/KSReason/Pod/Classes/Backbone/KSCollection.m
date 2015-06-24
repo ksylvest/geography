@@ -58,6 +58,13 @@ NSString * const KSCollectionModelsKey = @"models";
     }];
 }
 
+- (NSArray *)parameterize
+{
+    return [self.models KS_map:^NSDictionary * (NSObject <KSParsable> *model) {
+        return [model parameterize];
+    }];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - Archivable

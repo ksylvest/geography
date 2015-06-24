@@ -11,6 +11,30 @@
 @interface KSValidator : NSObject
 
 /**
+ This helper runs a set of validations against supplied parameters and returns an error or `NULL`.
+ @param parameters A set of key and value pairs that the validations will execute against.
+ @param validations Should be structured as the key followed by a listing of the desired validations.
+ @return An instance of the validator.
+ */
++ (instancetype)validator:(NSDictionary *)validations;
+
+/**
+ This helper runs the validations.
+ @param attributes The attributes to validate.
+ */
+- (void)validate:(NSDictionary *)attributes;
+
+/**
+ An accessor for the errors.
+ */
+- (NSDictionary *)errors;
+
+/**
+ A helper for converting to a string.
+ */
+- (NSString *)humanize;
+
+/**
  This helper validates the length of a specific string using an exact match.
  @param string A string to validate.
  @param length The desired length.

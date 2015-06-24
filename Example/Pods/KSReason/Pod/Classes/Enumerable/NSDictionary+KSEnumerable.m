@@ -25,7 +25,7 @@
 
 - (void)KS_eachi:(KSDictionaryEachIBlock)block
 {
-    NSInteger index = 0;
+    NSUInteger index = 0;
     for (id key in self)
     {
         id value = self[key];
@@ -260,6 +260,40 @@
         [values addObject:self[key]];
     }
     return values;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Finders
+
+- (id)KS_minimum
+{
+    return [self KS_reduce:^id(id memo, id key, id value) {
+        if ([memo compare:value] == NSOrderedAscending) return memo;
+        else return value;
+    } memo:NULL];
+}
+
+- (id)KS_maximum
+{
+    return [self KS_reduce:^id(id memo, id key, id value) {
+        if ([memo compare:value] == NSOrderedDescending) return memo;
+        else return value;
+    } memo:NULL];
+}
+
+- (id)KS_sample
+{
+    NSUInteger position = arc4random_uniform((int)self.count);
+    
+    NSInteger index = 0;
+    for (id key in self)
+    {
+        if (index != position) index++;
+        else return self[key];
+    }
+    
+    return NULL;
 }
 
 @end

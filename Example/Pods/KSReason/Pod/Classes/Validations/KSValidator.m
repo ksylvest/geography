@@ -8,10 +8,42 @@
 
 #import <KSReason/KSEnumerable.h>
 #import <KSReason/KSExistentialism.h>
+#import <KSReason/KSFormatting.h>
+
+NSString * const KSValidatorLength = @"length";
+NSString * const KSValidatorFormat = @"format";
+NSString * const KSValidatorInclusion = @"inclusion";
+NSString * const KSValidatorExclusion = @"exclusion";
+NSString * const KSValidatorPresence = @"presence";
+NSString * const KSValidatorAbsence = @"absence";
+
+NSString * const KSValidatorIs = @"is";
+NSString * const KSValidatorMinimum = @"minimum";
+NSString * const KSValidatorMaximum = @"maximum";
+NSString * const KSValidatorWith = @"with";
+NSString * const KSValidatorIn = @"in";
+
 
 #import "KSValidator.h"
+#import "KSValidation.h"
+
+@interface KSValidator ()
+
+@property (nonatomic, strong) NSDictionary *validations;
+@property (nonatomic, strong) NSDictionary *errors;
+
+@end
 
 @implementation KSValidator
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Factories
+
++ (instancetype)validator:(NSDictionary *)validations
+{
+    return [[self alloc] initWithValidations:validations];
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -57,5 +89,51 @@
 {
     return ![self presence:object];
 }
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Lifecycle
+
+- (id)initWithValidations:(NSDictionary *)validations
+{
+    self = [super init];
+    
+    if (self)
+    {
+        self.validations = [validations KS_map:^NSDictionary *(id attribute, NSDictionary *settings) {
+            return [settings KS_map:^id(id kind, NSDictionary *options) {
+                return [KSValidation kind:kind options:options];
+            }];
+        }];
+    }
+    
+    return self;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Lifecycle
+
+- (void)validate:(NSDictionary *)attributes
+{
+    self.errors = [attributes KS_map:^id(id key, id attribute) {
+        return [self.validations[key] KS_reduce:^id(NSMutableArray *memo, id kind, KSValidation *validation) {
+            [validation validate:attribute callback:^(NSString *message) { [memo addObject:message]; }];
+            return memo;
+        } memo:[NSMutableArray array]];
+    }];
+}
+
+- (NSString *)humanize
+{
+    NSArray *errors = [self.errors KS_reduce:^id(NSMutableArray *memo, id key, NSArray *errors) {
+        return [memo arrayByAddingObjectsFromArray:[errors KS_map:^id(NSString *message) {
+            return [NSString stringWithFormat:@"%@ %@", NSLocalizedString(key, NULL), message];
+        }]];
+    } memo:[NSArray array]];
+    
+    return [KSHumanizer sentence:errors];
+}
+
 
 @end

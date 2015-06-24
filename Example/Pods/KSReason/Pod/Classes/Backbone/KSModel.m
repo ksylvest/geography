@@ -29,6 +29,11 @@ NSString * const KSCollectionParametersKey = @"parameters";
     self.parameters = parameters;
 }
 
+- (NSDictionary *)parameterize
+{
+    return self.parameters;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - Helpers

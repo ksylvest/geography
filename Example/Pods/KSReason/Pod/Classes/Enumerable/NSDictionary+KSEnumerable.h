@@ -134,4 +134,22 @@ extern KSDictionaryTestBlock KSDictionaryTestBlockNegate(KSDictionaryTestBlock b
  */
 - (NSArray *)KS_values;
 
+/**
+ Find the minimum (note: the elements must implement the `compare:`).
+ @return The minimum value.
+ */
+- (id)KS_minimum;
+
+/**
+ Find the minimum (note: the elements must implement the `compare:`).
+ @return The maximum value.
+ */
+- (id)KS_maximum;
+
+/**
+ Produce a random sample from the collection.
+ @return A sample value.
+ */
+- (id)KS_sample;
+
 @end

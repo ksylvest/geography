@@ -9,6 +9,7 @@
 #ifndef Pods_KSValidations_h
 #define Pods_KSValidations_h
 
+#import <KSReason/KSValidate.h>
 #import <KSReason/KSValidator.h>
 #import <KSReason/KSValidation.h>
 

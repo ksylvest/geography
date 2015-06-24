@@ -18,6 +18,28 @@ pod "KSReason"
 
 ## Usage
 
+
+### Backbone
+
+**Backbone** is a component designed to implement models and collections (inspired by the web framework with the same name).
+
+#### Models
+
+```objc
+KSModel *model = [KSModel new];
+[model parse:@{ @"id": @"...", @"title": @"...", @"description": @"..." }];
+[model get:@"title"];
+[model get:@"description"];
+```
+
+#### Collections
+
+```objc
+KSCollection *collection = [KSCollection new];
+[collection parse:@[@{ @"id": @"...", @"title": @"...", @"description": @"..." }]];
+collection.models;
+```
+
 ### Enumerable
 
 #### Iterating
@@ -237,7 +259,96 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 }];
 ```
 
+#### Minimum
+
+**Sets:**
+```objc
+NSSet *collection = [NSSet setWithObjects:@1.0, @1.25, @0.75, NULL];
+collection.KS_minimum; //0.75
+```
+
+**Arrays:**
+```objc
+NSArray *collection = [NSArray arrayWithObjects:@1.00, @1.25, @0.75, NULL];
+collection.KS_minimum; // 0.75;
+```
+
+**Dictionaries:**
+```objc
+NSDictionary *collection = @{ @"USD": @1.00, @"CDN": @1.25, @"EUR": @0.75 };
+collection.KS_minimum; // 0.75
+```
+
+#### Maximum
+
+**Sets:**
+```objc
+it (@"exposes the maximum in an set", ^{
+NSSet *collection = [NSSet setWithObjects:@1.00, @1.25, @0.75, NULL];
+collection.KS_maximum; // 1.25
+```
+
+**Arrays:**
+```objc
+it (@"exposes the maximum in an array", ^{
+NSArray *collection = [NSArray arrayWithObjects:@1.0, @1.25, @0.75, NULL];
+collection.KS_maximum; //1.25);
+```
+
+**Dictionaries:**
+```objc
+NSDictionary *collection = @{ @"USD": @1.0, @"CDN": @1.25, @"EUR": @0.75 };
+collection.KS_maximum; //1.25
+```
+
+#### Sample
+
+**Sets:**
+```objc
+NSSet *collection = [NSSet setWithObjects:@1.0, @1.25, @0.75, NULL];
+collection.KS_sample; // (1.0 | 1.25 | 0.75)
+```
+
+**Arrays:**
+```objc
+NSArray *collection = [NSArray arrayWithObjects:@1.0, @1.25, @0.75, NULL];
+collection.KS_sample; // (1.0 | 1.25 | 0.75)
+```
+
+**Dictionaries:**
+```objc
+NSDictionary *collection = @{ @"USD": @1.0, @"CDN": @1.25, @"EUR": @0.75 };
+collection.KS_sample; // (1.0 | 1.25 | 0.75)
+```
+
 ### Validations
+
+#### Validate
+
+```objc
+NSDictionary *attributes = @{ @"name": @"John Smith", @"email": @"john.smith@mail.org", @"phone": @"+1 555-555-5555" };
+NSDictionary *validations = @{ 
+  @"name": @{ KSValidate.presence: @{ KSValidate.message: @"must be entered" } },
+  @"tagline": @{ KSValidate.length: @{ KSValidate.minimum: @20, KSValidate.maximum: @80 } },
+  @"email": @{ KSValidate.format: @{ KSValidate.with: KSValidateFormatEmail } },
+  @"phone": @{ KSValidate.format: @{ KSValidate.with: KSValidateFormatPhone } },
+  @"country": @{ KSValidate.inclusion: @{ KSValidate.of: @[@"Canada"] } },
+  @"region": @{ KSValidate.exclusion: @{ KSValidate.of: @[@"PEI"] } },
+};
+
+KSValidator *validator = [KSValidator validator:validations];
+[validator validate:attributes];
+
+validator.errors; 
+// ex.: 
+// @{ 
+//   @"tagline": @[@"must be between 20 and 80 characters", @"cannot contain inappriate language"], 
+//   @"email": @[@"is formatted wrong"], @"phone": @[@"is formatted wrong"]
+// };
+
+validator.humanize;
+// @"tagline must be between 20 and 80 characters, tagline cannot contain inapproriate language, email is formatted wrong, phone is formatted wrong and name can't be blank"
+```
 
 #### Length
 
@@ -254,7 +365,7 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 [KSValidator length:@"test" maximum:5]; // YES
 ```
 
-### Format
+#### Format
 
 ```objc
 [KSValidator format:@"tester" with:KSValidationEmail]; // NO
@@ -267,30 +378,51 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 [KSValidator format:@"abcdefghijklmnopqrstuvwxyz" with:@"\\A[a-z]+\\z"]; // YES
 ```
 
-### Inclusion
+#### Inclusion
 
 ```objc
 [KSValidator inclusion:@"blue" collection:@[@"blue"]]; // YES
 [KSValidator inclusion:@"pink" collection:@[@"blue"]]; // NO
 ```
 
-### Exclusion
+#### Exclusion
 
 ```objc
 [KSValidator exclusion:@"blue" collection:@[@"blue"]]; // YES
 [KSValidator exclusion:@"pink" collection:@[@"blue"]]; // NO
 ```
 
-### Presence
+#### Presence
 
 ```objc
 [KSValidator presence:@"Greetings!"]; // YES
 ```
 
-### Absence
+#### Absence
 
 ```objc
 [KSValidator absence:@"Greetings!"]; // NO
+```
+
+The attribute names may also be addint the following to `Localizable.strings`:
+
+#### Localizations
+
+**Messages:**
+```strings
+"is invalid": "...";
+"can't be blank": "...";
+"can't be present": "...";
+"must be exactly %@ characters": "...";
+"must be between %@ and %@ characters": "...";
+"must be a minimum of %@ characters": "...";
+"must be a maximum of %@ characters": "...";
+```
+
+**Attributes:**
+
+```strings
+"ssn" = "social security number";
 ```
 
 ### Inflections
@@ -344,7 +476,7 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 
 #### Dictionaries
 ```objc
-@{}.KS_exists;; // NO
+@{}.KS_exists; // NO
 @{ key: value }.KS_exists; // YES
 ```
 
