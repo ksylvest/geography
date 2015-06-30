@@ -1,6 +1,6 @@
 {
   "name": "KSGeography",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "summary": "Some basic helpers for handling countries and regions.",
   "description": "                       Adds in some helper classes for dealing with countries and regions.\n\n                       * Supports both Canada and the US by default.\n                       * Can be easily extended with larger lists.\n",
   "homepage": "https://github.com/ksylvest/geography",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/ksylvest/geography.git",
-    "tag": "1.0.2"
+    "tag": "1.0.3"
   },
   "platforms": {
     "ios": "7.0"

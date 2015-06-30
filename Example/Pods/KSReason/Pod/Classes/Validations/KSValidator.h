@@ -83,14 +83,14 @@
 + (BOOL)exclusion:(NSObject *)object collection:(NSObject *)collection;
 
 /**
- This helper validates that the specified object is present. It checks for `NSNull`, NULL, or `KS_present`.
+ This helper validates that the specified object is present. It checks for `NSNull`, NULL, or `ks_present`.
  @param object An object to validate (works best on objects that conform to `KSExists`).
  @return A boolean indicating if the validator is successful or fails.
  */
 + (BOOL)presence:(NSObject *)object;
 
 /**
- This helper validates that the specified object is absent. It checks for `NSNull`, NULL, or `KS_blank`.
+ This helper validates that the specified object is absent. It checks for `NSNull`, NULL, or `ks_blank`.
  @param object An object to validate (works best on objects that conform to `KSExists`).
  @return A boolean indicating if the validator is successful or fails.
  */

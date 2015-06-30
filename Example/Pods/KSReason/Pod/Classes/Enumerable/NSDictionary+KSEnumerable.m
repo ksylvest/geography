@@ -14,7 +14,7 @@
 
 #pragma mark - Iterate
 
-- (void)KS_each:(KSDictionaryEachBlock)block
+- (void)ks_each:(KSDictionaryEachBlock)block
 {
     for (id key in self)
     {
@@ -23,7 +23,7 @@
     }
 }
 
-- (void)KS_eachi:(KSDictionaryEachIBlock)block
+- (void)ks_eachi:(KSDictionaryEachIBlock)block
 {
     NSUInteger index = 0;
     for (id key in self)
@@ -37,7 +37,7 @@
 
 #pragma mark - Map
 
-- (NSDictionary *)KS_map:(KSDictionaryMapBlock)block
+- (NSDictionary *)ks_map:(KSDictionaryMapBlock)block
 {
     NSMutableDictionary *results = [NSMutableDictionary dictionaryWithCapacity:self.count];
     
@@ -52,7 +52,7 @@
     return results;
 }
 
-- (NSDictionary *)KS_mapi:(KSDictionaryMapIBlock)block
+- (NSDictionary *)ks_mapi:(KSDictionaryMapIBlock)block
 {
     NSMutableDictionary *results = [NSMutableDictionary dictionaryWithCapacity:self.count];
     
@@ -72,7 +72,7 @@
 
 #pragma mark - Reduce
 
-- (id)KS_reduce:(KSDictionaryReduceBlock)block memo:(id)memo
+- (id)ks_reduce:(KSDictionaryReduceBlock)block memo:(id)memo
 {
     for (id key in self)
     {
@@ -88,7 +88,7 @@
 
 #pragma mark - Find
 
-- (id)KS_find:(KSDictionaryTestBlock)block
+- (id)ks_find:(KSDictionaryTestBlock)block
 {
     for (id key in self)
     {
@@ -103,7 +103,7 @@
 
 #pragma mark - Any
 
-- (BOOL)KS_any:(KSDictionaryTestBlock)block
+- (BOOL)ks_any:(KSDictionaryTestBlock)block
 {
     for (id key in self)
     {
@@ -117,7 +117,7 @@
 
 #pragma mark - All
 
-- (BOOL)KS_all:(KSDictionaryTestBlock)block
+- (BOOL)ks_all:(KSDictionaryTestBlock)block
 {
     for (id key in self)
     {
@@ -131,7 +131,7 @@
 
 #pragma mark - Size
 
-- (NSUInteger)KS_size
+- (NSUInteger)ks_size
 {
     return self.count;
 }
@@ -140,7 +140,7 @@
 
 #pragma mark - Filtering
 
-- (NSDictionary *)KS_filter:(KSDictionaryTestBlock)block
+- (NSDictionary *)ks_filter:(KSDictionaryTestBlock)block
 {
     NSMutableDictionary *results = [NSMutableDictionary dictionaryWithCapacity:self.count];
     
@@ -160,16 +160,16 @@
 
 #pragma mark - Rejecting
 
-- (NSDictionary *)KS_reject:(KSDictionaryTestBlock)block
+- (NSDictionary *)ks_reject:(KSDictionaryTestBlock)block
 {
-    return [self KS_filter:[self KS_negate:block]];
+    return [self ks_filter:[self ks_negate:block]];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - Negating
 
-- (KSDictionaryTestBlock)KS_negate:(KSDictionaryTestBlock)block
+- (KSDictionaryTestBlock)ks_negate:(KSDictionaryTestBlock)block
 {
     return ^BOOL (id key, id value) { return !block(key, value); };
 }
@@ -178,7 +178,7 @@
 
 #pragma mark - Converters
 
-- (NSSet *)KS_set:(KSDictionaryMapBlock)block
+- (NSSet *)ks_set:(KSDictionaryMapBlock)block
 {
     NSMutableSet *results = [NSMutableSet setWithCapacity:self.count];
     
@@ -192,7 +192,7 @@
     return results;
 }
 
-- (NSArray *)KS_array:(KSDictionaryMapBlock)block
+- (NSArray *)ks_array:(KSDictionaryMapBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -210,7 +210,7 @@
 
 #pragma mark - Extending
 
-- (NSDictionary *)KS_extend:(NSDictionary *)extend
+- (NSDictionary *)ks_extend:(NSDictionary *)extend
 {
     NSMutableDictionary *results = [NSMutableDictionary dictionaryWithCapacity:self.count];
     
@@ -233,16 +233,16 @@
 
 #pragma mark - Defaults
 
-- (NSDictionary *)KS_defaults:(NSDictionary *)dictionary
+- (NSDictionary *)ks_defaults:(NSDictionary *)dictionary
 {
-    return [dictionary KS_extend:self];
+    return [dictionary ks_extend:self];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - Conversions
 
-- (NSSet *)KS_keys
+- (NSSet *)ks_keys
 {
     NSMutableSet *keys = [NSMutableSet setWithCapacity:self.count];
     for (id key in self)
@@ -252,7 +252,7 @@
     return keys;
 }
 
-- (NSArray *)KS_values
+- (NSArray *)ks_values
 {
     NSMutableArray *values = [NSMutableArray arrayWithCapacity:self.count];
     for (id key in self)
@@ -266,23 +266,23 @@
 
 #pragma mark - Finders
 
-- (id)KS_minimum
+- (id)ks_minimum
 {
-    return [self KS_reduce:^id(id memo, id key, id value) {
+    return [self ks_reduce:^id(id memo, id key, id value) {
         if ([memo compare:value] == NSOrderedAscending) return memo;
         else return value;
     } memo:NULL];
 }
 
-- (id)KS_maximum
+- (id)ks_maximum
 {
-    return [self KS_reduce:^id(id memo, id key, id value) {
+    return [self ks_reduce:^id(id memo, id key, id value) {
         if ([memo compare:value] == NSOrderedDescending) return memo;
         else return value;
     } memo:NULL];
 }
 
-- (id)KS_sample
+- (id)ks_sample
 {
     NSUInteger position = arc4random_uniform((int)self.count);
     

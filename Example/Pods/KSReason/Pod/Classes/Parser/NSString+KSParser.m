@@ -15,9 +15,9 @@
 
 #pragma mark - Parsing
 
-+ (NSString *)KS_parse:(id)object
++ (NSString *)ks_parse:(id)object
 {
-    object = [super KS_parse:object];
+    object = [super ks_parse:object];
     if (!object || [object isKindOfClass:[NSString class]]) return object;
     return [NSString stringWithFormat:@"%@", object];
 

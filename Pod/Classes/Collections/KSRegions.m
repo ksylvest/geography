@@ -32,7 +32,7 @@
     NSString *file = [bundle pathForResource:@"KSGeography.bundle/KSGeography" ofType:@"plist"];
     NSArray *geography = [[NSArray alloc] initWithContentsOfFile:file];
     
-    NSArray *parameters = [geography KS_reduce:^NSArray *(NSMutableArray *array, NSDictionary *parameters) {
+    NSArray *parameters = [geography ks_reduce:^NSArray *(NSMutableArray *array, NSDictionary *parameters) {
         [array addObjectsFromArray:parameters[@"regions"]];
         return array;
     } memo:[NSMutableArray array]];
@@ -46,14 +46,14 @@
 
 - (KSRegion *)named:(NSString *)name
 {
-    return [self.models KS_find:^BOOL(KSRegion *region) {
+    return [self.models ks_find:^BOOL(KSRegion *region) {
         return [region.name isEqualToString:name];
     }];
 }
 
 - (KSRegion *)coded:(NSString *)code
 {
-    return [self.models KS_find:^BOOL(KSRegion *region) {
+    return [self.models ks_find:^BOOL(KSRegion *region) {
         return [region.code isEqualToString:code];
     }];
 }

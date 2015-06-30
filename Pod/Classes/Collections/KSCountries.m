@@ -42,14 +42,14 @@
 
 - (KSCountry *)named:(NSString *)name
 {
-    return [self.models KS_find:^BOOL(KSCountry *country) {
+    return [self.models ks_find:^BOOL(KSCountry *country) {
         return [country.name isEqualToString:name];
     }];
 }
 
 - (KSCountry *)coded:(NSString *)code
 {
-    return [self.models KS_find:^BOOL(KSCountry *country) {
+    return [self.models ks_find:^BOOL(KSCountry *country) {
         return [country.code isEqualToString:code];
     }];
 }

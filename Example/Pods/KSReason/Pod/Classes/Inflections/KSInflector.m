@@ -109,8 +109,8 @@
         for (NSString *alpha in pair)
         {
             NSString *omega = pair[alpha];
-            if ([string KS_matches:alpha]) return omega;
-            if ([string KS_matches:omega]) return alpha;
+            if ([string ks_matches:alpha]) return omega;
+            if ([string ks_matches:omega]) return alpha;
         }
     }
     
@@ -119,7 +119,7 @@
         for (NSString *rule in pair)
         {
             NSString *replacement = pair[rule];
-            if ([string KS_matches:rule]) return [string KS_replace:rule with:replacement];
+            if ([string ks_matches:rule]) return [string ks_replace:rule with:replacement];
         }
     }
     
@@ -133,8 +133,8 @@
         for (NSString *alpha in pair)
         {
             NSString *omega = pair[alpha];
-            if ([string KS_matches:alpha]) return omega;
-            if ([string KS_matches:omega]) return alpha;
+            if ([string ks_matches:alpha]) return omega;
+            if ([string ks_matches:omega]) return alpha;
         }
     }
     
@@ -143,7 +143,7 @@
         for (NSString *rule in pair)
         {
             NSString *replacement = pair[rule];
-            if ([string KS_matches:rule]) return [string KS_replace:rule with:replacement];
+            if ([string ks_matches:rule]) return [string ks_replace:rule with:replacement];
         }
     }
     

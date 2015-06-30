@@ -10,6 +10,6 @@
 
 @interface NSDate (KSParser)
 
-+ (NSDate *)KS_parse:(id)object;
++ (NSDate *)ks_parse:(id)object;
 
 @end

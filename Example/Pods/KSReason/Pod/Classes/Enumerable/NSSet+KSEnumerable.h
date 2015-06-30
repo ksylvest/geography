@@ -19,6 +19,6 @@
  @param block A block used to do the reduction.
  @return A mapped array.
  */
-- (NSArray *)KS_array:(KSIterableMapBlock)block;
+- (NSArray *)ks_array:(KSIterableMapBlock)block;
 
 @end

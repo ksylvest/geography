@@ -15,9 +15,9 @@
 
 #pragma mark - Parsing
 
-+ (NSNumber *)KS_parse:(id)object
++ (NSNumber *)ks_parse:(id)object
 {
-    object = [super KS_parse:object];
+    object = [super ks_parse:object];
     if (!object || [object isKindOfClass:[NSNumber class]]) return object;
     
     static NSNumberFormatter *customNumberFormatter = nil;
@@ -31,29 +31,29 @@
     return [customNumberFormatter numberFromString:object];
 }
 
-+ (NSInteger)KS_integer:(id)object
++ (NSInteger)ks_integer:(id)object
 {
-    return [[self KS_parse:object] integerValue];
+    return [[self ks_parse:object] integerValue];
 }
 
-+ (BOOL)KS_bool:(id)object
++ (BOOL)ks_bool:(id)object
 {
-    return [[self KS_parse:object] boolValue];
+    return [[self ks_parse:object] boolValue];
 }
 
-+ (float)KS_float:(id)object
++ (float)ks_float:(id)object
 {
-    return [[self KS_parse:object] floatValue];
+    return [[self ks_parse:object] floatValue];
 }
 
-+ (double)KS_double:(id)object
++ (double)ks_double:(id)object
 {
-    return [[self KS_parse:object] doubleValue];
+    return [[self ks_parse:object] doubleValue];
 }
 
-+ (long)KS_long:(id)object
++ (long)ks_long:(id)object
 {
-    return [[self KS_parse:object] longValue];
+    return [[self ks_parse:object] longValue];
 }
 
 @end

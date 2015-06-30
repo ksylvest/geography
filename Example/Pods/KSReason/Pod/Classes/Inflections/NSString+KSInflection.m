@@ -16,12 +16,12 @@
 
 #pragma mark - Inflections
 
-- (NSString *)KS_pluralize
+- (NSString *)ks_pluralize
 {
     return [KSInflector.shared pluralize:self];
 }
 
-- (NSString *)KS_singularize
+- (NSString *)ks_singularize
 {
     return [KSInflector.shared singularize:self];
 }

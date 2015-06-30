@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FD879DDA1E2CEA1D46DEBFDE"
+               BlueprintIdentifier = "5CC5B1384EF72EFF811098F2"
                BuildableName = "KSGeography.framework"
                BlueprintName = "Pods-KSGeography_Tests-KSGeography"
                ReferencedContainer = "container:Pods.xcodeproj">

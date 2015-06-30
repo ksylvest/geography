@@ -47,7 +47,7 @@ collection.models;
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-[collection KS_each:^(NSString *object) {
+[collection ks_each:^(NSString *object) {
   // ...
 }];
 ```
@@ -55,7 +55,7 @@ NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL]
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects;@"Canada", @"Greece", @"Russia", NULL];
-[collection KS_each:^(NSString *object) {
+[collection ks_each:^(NSString *object) {
   // ...
 }];
 ```
@@ -63,7 +63,7 @@ NSArray *collection = [NSArray arrayWithObjects;@"Canada", @"Greece", @"Russia",
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada": @"Victoria", @"Russia": @"Moscow", @"Greece": @"Athens" };
-[collection KS_each:^(NSString *key, NSString *value) {
+[collection ks_each:^(NSString *key, NSString *value) {
   // ...
 }];
 ```
@@ -73,7 +73,7 @@ NSDictionary *collection = @{ @"Canada": @"Victoria", @"Russia": @"Moscow", @"Gr
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSSet *mapping = [collection KS_map:^NSString *(NSString *object) {
+NSSet *mapping = [collection ks_map:^NSString *(NSString *object) {
   // ex: NSString *mapping = [object reverse];
   return mapping;
 }];
@@ -82,7 +82,7 @@ NSSet *mapping = [collection KS_map:^NSString *(NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects;@"Canada", @"Greece", @"Russia", NULL];
-NSArray *mapping = [collection KS_map:^NSString *(NSString *object) {
+NSArray *mapping = [collection ks_map:^NSString *(NSString *object) {
   // ex: NSString *mapping = [object reverse];
   return mapping;
 }];
@@ -91,7 +91,7 @@ NSArray *mapping = [collection KS_map:^NSString *(NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada": @"Victoria", @"Russia": @"Moscow", @"Greece": @"Athens" };
-NSDictionary *mapping = [collection KS_map:^NSString *(NSString *key, NSString *value) {
+NSDictionary *mapping = [collection ks_map:^NSString *(NSString *key, NSString *value) {
   // ex: NSString *mapping = [value reverse];
   return mapping;
 }];
@@ -102,7 +102,7 @@ NSDictionary *mapping = [collection KS_map:^NSString *(NSString *key, NSString *
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString *object){
+NSString *reduction = [collection ks_reduce:^NSString *(NSString *memo, NSString *object){
   return [NSString stringWithFormat:@"%@ %@", memo, object];
 } memo:@"reduction:"];
 ```
@@ -110,7 +110,7 @@ NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects;@"Canada", @"Greece", @"Russia", NULL];
-NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString *object){
+NSString *reduction = [collection ks_reduce:^NSString *(NSString *memo, NSString *object){
   return [NSString stringWithFormat:@"%@ %@", memo, object];
 } memo:@"reduction:"];
 ```
@@ -118,7 +118,7 @@ NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString
 **Dictionaries:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects;@"Canada", @"Greece", @"Russia", NULL];
-NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString *key, NSString *value){
+NSString *reduction = [collection ks_reduce:^NSString *(NSString *memo, NSString *key, NSString *value){
   return [NSString stringWithFormat:@"%@ %@", memo, value];
 } memo:@"reduction:"];
 ```
@@ -128,7 +128,7 @@ NSString *reduction = [collection KS_reduce:^NSString *(NSString *memo, NSString
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSString *element = [collection KS_find:^BOOL (NSString *object) {
+NSString *element = [collection ks_find:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -136,7 +136,7 @@ NSString *element = [collection KS_find:^BOOL (NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSString *element = [collection KS_find:^BOOL (NSString *object) {
+NSString *element = [collection ks_find:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -144,7 +144,7 @@ NSString *element = [collection KS_find:^BOOL (NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada" : @"Victoria", @"Greece": @"Athens", @"Russia": @"Moscow" };
-NSString *element = [collection KS_find:^BOOL (NSString *key, NSString *value) {
+NSString *element = [collection ks_find:^BOOL (NSString *key, NSString *value) {
   return [key isEqualToString:@"..."];
 }];
 ```
@@ -154,7 +154,7 @@ NSString *element = [collection KS_find:^BOOL (NSString *key, NSString *value) {
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-BOOL any = [collection KS_any:^BOOL (NSString *object) {
+BOOL any = [collection ks_any:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -162,7 +162,7 @@ BOOL any = [collection KS_any:^BOOL (NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-BOOL any = [collection KS_any:^BOOL (NSString *object) {
+BOOL any = [collection ks_any:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -170,7 +170,7 @@ BOOL any = [collection KS_any:^BOOL (NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada" : @"Victoria", @"Greece": @"Athens", @"Russia": @"Moscow" };
-BOOL any = [collection KS_any:^BOOL (NSString *key, NSString *value) {
+BOOL any = [collection ks_any:^BOOL (NSString *key, NSString *value) {
   return [key isEqualToString:@"..."];
 }];
 ```
@@ -180,7 +180,7 @@ BOOL any = [collection KS_any:^BOOL (NSString *key, NSString *value) {
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-BOOL all = [collection KS_all:^BOOL (NSString *object) {
+BOOL all = [collection ks_all:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -188,7 +188,7 @@ BOOL all = [collection KS_all:^BOOL (NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-BOOL all = [collection KS_all:^BOOL (NSString *object) {
+BOOL all = [collection ks_all:^BOOL (NSString *object) {
   return [object isEqualToString:@"..."];
 }];
 ```
@@ -196,7 +196,7 @@ BOOL all = [collection KS_all:^BOOL (NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada" : @"Victoria", @"Greece": @"Athens", @"Russia": @"Moscow" };
-BOOL all = [collection KS_all:^BOOL (NSString *key, NSString *value) {
+BOOL all = [collection ks_all:^BOOL (NSString *key, NSString *value) {
   return [key isEqualToString:@"..."];
 }];
 ```
@@ -206,7 +206,7 @@ BOOL all = [collection KS_all:^BOOL (NSString *key, NSString *value) {
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSSet *filter = [collection KS_filter:^BOOL (NSString *object) {
+NSSet *filter = [collection ks_filter:^BOOL (NSString *object) {
   // ex.: BOOL match = [object isEqualToString:@"..."];
   return match;
 }];
@@ -215,7 +215,7 @@ NSSet *filter = [collection KS_filter:^BOOL (NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSArray *filtered = [collection KS_filter:^BOOL (NSString *object) {
+NSArray *filtered = [collection ks_filter:^BOOL (NSString *object) {
   // ex.: BOOL match = [object isEqualToString:@"..."];
   return match;
 }];
@@ -224,7 +224,7 @@ NSArray *filtered = [collection KS_filter:^BOOL (NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada" : @"Victoria", @"Greece": @"Athens", @"Russia": @"Moscow" };
-NSDictionary *filtered = [collection KS_filter:^BOOL (NSString *key, NSString *value) {
+NSDictionary *filtered = [collection ks_filter:^BOOL (NSString *key, NSString *value) {
   // ex.: BOOL match = [key isEqualToString:@"..."] || [value isEqualToString:@"..."];
   return match;
 }];
@@ -235,7 +235,7 @@ NSDictionary *filtered = [collection KS_filter:^BOOL (NSString *key, NSString *v
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSSet *filter = [collection KS_reject:^BOOL (NSString *object) {
+NSSet *filter = [collection ks_reject:^BOOL (NSString *object) {
   // ex.: BOOL match = [object isEqualToString:@"..."];
   return match;
 }];
@@ -244,7 +244,7 @@ NSSet *filter = [collection KS_reject:^BOOL (NSString *object) {
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@"Canada", @"Greece", @"Russia", NULL];
-NSArray *filtered = [collection KS_reject:^BOOL (NSString *object) {
+NSArray *filtered = [collection ks_reject:^BOOL (NSString *object) {
   // ex.: BOOL match = [object isEqualToString:@"..."];
   return match;
 }];
@@ -253,7 +253,7 @@ NSArray *filtered = [collection KS_reject:^BOOL (NSString *object) {
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"Canada" : @"Victoria", @"Greece": @"Athens", @"Russia": @"Moscow" };
-NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *value) {
+NSDictionary *filtered = [collection ks_reject:^BOOL (NSString *key, NSString *value) {
   // ex.: BOOL match = [key isEqualToString:@"..."] || [value isEqualToString:@"..."];
   return match;
 }];
@@ -264,19 +264,19 @@ NSDictionary *filtered = [collection KS_reject:^BOOL (NSString *key, NSString *v
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@1.0, @1.25, @0.75, NULL];
-collection.KS_minimum; //0.75
+collection.ks_minimum; //0.75
 ```
 
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@1.00, @1.25, @0.75, NULL];
-collection.KS_minimum; // 0.75;
+collection.ks_minimum; // 0.75;
 ```
 
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"USD": @1.00, @"CDN": @1.25, @"EUR": @0.75 };
-collection.KS_minimum; // 0.75
+collection.ks_minimum; // 0.75
 ```
 
 #### Maximum
@@ -285,20 +285,20 @@ collection.KS_minimum; // 0.75
 ```objc
 it (@"exposes the maximum in an set", ^{
 NSSet *collection = [NSSet setWithObjects:@1.00, @1.25, @0.75, NULL];
-collection.KS_maximum; // 1.25
+collection.ks_maximum; // 1.25
 ```
 
 **Arrays:**
 ```objc
 it (@"exposes the maximum in an array", ^{
 NSArray *collection = [NSArray arrayWithObjects:@1.0, @1.25, @0.75, NULL];
-collection.KS_maximum; //1.25);
+collection.ks_maximum; //1.25);
 ```
 
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"USD": @1.0, @"CDN": @1.25, @"EUR": @0.75 };
-collection.KS_maximum; //1.25
+collection.ks_maximum; //1.25
 ```
 
 #### Sample
@@ -306,19 +306,19 @@ collection.KS_maximum; //1.25
 **Sets:**
 ```objc
 NSSet *collection = [NSSet setWithObjects:@1.0, @1.25, @0.75, NULL];
-collection.KS_sample; // (1.0 | 1.25 | 0.75)
+collection.ks_sample; // (1.0 | 1.25 | 0.75)
 ```
 
 **Arrays:**
 ```objc
 NSArray *collection = [NSArray arrayWithObjects:@1.0, @1.25, @0.75, NULL];
-collection.KS_sample; // (1.0 | 1.25 | 0.75)
+collection.ks_sample; // (1.0 | 1.25 | 0.75)
 ```
 
 **Dictionaries:**
 ```objc
 NSDictionary *collection = @{ @"USD": @1.0, @"CDN": @1.25, @"EUR": @0.75 };
-collection.KS_sample; // (1.0 | 1.25 | 0.75)
+collection.ks_sample; // (1.0 | 1.25 | 0.75)
 ```
 
 ### Validations
@@ -430,17 +430,17 @@ The attribute names may also be addint the following to `Localizable.strings`:
 #### Pluralize
 
 ```objc
-[@"cookie" KS_pluralize]; // cookies
-[@"cherry" KS_pluralize]; // cherries
-[@"potato" KS_pluralize]; // potatoes
+[@"cookie" ks_pluralize]; // cookies
+[@"cherry" ks_pluralize]; // cherries
+[@"potato" ks_pluralize]; // potatoes
 ```
 
 #### Singularize
 
 ```objc
-[@"cookies" KS_singularize]; // cookie
-[@"cherries" KS_pluralize]; // cherry
-[@"potatoes" KS_pluralize]; // potato
+[@"cookies" ks_singularize]; // cookie
+[@"cherries" ks_pluralize]; // cherry
+[@"potatoes" ks_pluralize]; // potato
 ```
 
 #### Advanced
@@ -457,34 +457,34 @@ The attribute names may also be addint the following to `Localizable.strings`:
 #### Objects
 
 ```objc
-[NSNull null].KS_exists; // NO
-[NSObject new].KS_exists; // YES
+[NSNull null].ks_exists; // NO
+[NSObject new].ks_exists; // YES
 ```
 
 #### Sets
 
 ```objc
-[NSSet set].KS_exists; // NO
-[NSSet setWithObject:object].KS_exists; // YES
+[NSSet set].ks_exists; // NO
+[NSSet setWithObject:object].ks_exists; // YES
 ```
 
 #### Arrays
 ```objc
-[NSArray set].KS_exists; // NO
-[NSArray setWithObject:object].KS_exists; // YES
+[NSArray set].ks_exists; // NO
+[NSArray setWithObject:object].ks_exists; // YES
 ```
 
 #### Dictionaries
 ```objc
-@{}.KS_exists; // NO
-@{ key: value }.KS_exists; // YES
+@{}.ks_exists; // NO
+@{ key: value }.ks_exists; // YES
 ```
 
 #### Strings
 
 ```objc
-@"".KS_exists; // NO
-@"Greetings!".KS_exists; // YES
+@"".ks_exists; // NO
+@"Greetings!".ks_exists; // YES
 ```
 
 ## Author

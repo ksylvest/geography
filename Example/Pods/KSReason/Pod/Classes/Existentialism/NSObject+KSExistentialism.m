@@ -10,7 +10,7 @@
 
 @implementation NSObject (KSExistentialism)
 
-- (BOOL)KS_exists
+- (BOOL)ks_exists
 {
     return self && self != [NSNull null];
 }

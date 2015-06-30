@@ -15,9 +15,9 @@
 
 #pragma mark - Implementation
 
-- (BOOL)KS_exists
+- (BOOL)ks_exists
 {
-    return [super KS_exists] && !!self.length;
+    return [super ks_exists] && !!self.length;
 }
 
 @end

@@ -72,7 +72,7 @@ NSString * const KSValidatorIn = @"in";
 + (BOOL)inclusion:(NSObject *)object collection:(NSObject *)collection
 {
     return [collection conformsToProtocol:@protocol(KSIterable)] &&
-    [((NSObject <KSIterable> *)collection) KS_any:^BOOL(id object) { return [object isEqual:object]; }];
+    [((NSObject <KSIterable> *)collection) ks_any:^BOOL(id object) { return [object isEqual:object]; }];
 }
 
 + (BOOL)exclusion:(NSObject *)object collection:(NSObject *)collection
@@ -82,7 +82,7 @@ NSString * const KSValidatorIn = @"in";
 
 + (BOOL)presence:(NSObject *)object
 {
-    return object.KS_exists;
+    return object.ks_exists;
 }
 
 + (BOOL)absence:(NSObject *)object
@@ -100,8 +100,8 @@ NSString * const KSValidatorIn = @"in";
     
     if (self)
     {
-        self.validations = [validations KS_map:^NSDictionary *(id attribute, NSDictionary *settings) {
-            return [settings KS_map:^id(id kind, NSDictionary *options) {
+        self.validations = [validations ks_map:^NSDictionary *(id attribute, NSDictionary *settings) {
+            return [settings ks_map:^id(id kind, NSDictionary *options) {
                 return [KSValidation kind:kind options:options];
             }];
         }];
@@ -116,8 +116,8 @@ NSString * const KSValidatorIn = @"in";
 
 - (void)validate:(NSDictionary *)attributes
 {
-    self.errors = [attributes KS_map:^id(id key, id attribute) {
-        return [self.validations[key] KS_reduce:^id(NSMutableArray *memo, id kind, KSValidation *validation) {
+    self.errors = [attributes ks_map:^id(id key, id attribute) {
+        return [self.validations[key] ks_reduce:^id(NSMutableArray *memo, id kind, KSValidation *validation) {
             [validation validate:attribute callback:^(NSString *message) { [memo addObject:message]; }];
             return memo;
         } memo:[NSMutableArray array]];
@@ -126,8 +126,8 @@ NSString * const KSValidatorIn = @"in";
 
 - (NSString *)humanize
 {
-    NSArray *errors = [self.errors KS_reduce:^id(NSMutableArray *memo, id key, NSArray *errors) {
-        return [memo arrayByAddingObjectsFromArray:[errors KS_map:^id(NSString *message) {
+    NSArray *errors = [self.errors ks_reduce:^id(NSMutableArray *memo, id key, NSArray *errors) {
+        return [memo arrayByAddingObjectsFromArray:[errors ks_map:^id(NSString *message) {
             return [NSString stringWithFormat:@"%@ %@", NSLocalizedString(key, NULL), message];
         }]];
     } memo:[NSArray array]];

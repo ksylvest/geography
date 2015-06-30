@@ -21,7 +21,7 @@
     NSInteger trailer = collection.count;
     trailer--;
 
-    return [collection KS_reducei:^id(NSString *memo, NSString *object, NSUInteger index) {
+    return [collection ks_reducei:^id(NSString *memo, NSString *object, NSUInteger index) {
         if (!memo) return object;
         NSString *separator = (index != trailer) ? @", " : @" and ";
         return [NSString stringWithFormat:@"%@%@%@", memo, separator, object];

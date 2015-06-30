@@ -20,6 +20,6 @@ typedef BOOL (^KSArrayTestBlock)(id object);
  @param block A block used to do the reduction.
  @return A mapped set.
  */
-- (NSSet *)KS_set:(KSIterableMapBlock)block;
+- (NSSet *)ks_set:(KSIterableMapBlock)block;
 
 @end

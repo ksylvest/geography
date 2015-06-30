@@ -14,7 +14,7 @@
 
 #pragma mark - Main
 
-- (NSString *)KS_replace:(NSString *)pattern with:(NSString *)replacement
+- (NSString *)ks_replace:(NSString *)pattern with:(NSString *)replacement
 {
     NSError *error = NULL;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
@@ -23,7 +23,7 @@
     return [regex stringByReplacingMatchesInString:self options:0 range:range withTemplate:replacement];
 }
 
-- (BOOL)KS_matches:(NSString *)pattern
+- (BOOL)ks_matches:(NSString *)pattern
 {
     NSRange range = [self rangeOfString:pattern options:NSRegularExpressionSearch];
     

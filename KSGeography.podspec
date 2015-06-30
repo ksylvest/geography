@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "KSGeography"
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "Some basic helpers for handling countries and regions."
   s.description      = <<-DESC
                        Adds in some helper classes for dealing with countries and regions.

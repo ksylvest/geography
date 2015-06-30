@@ -10,6 +10,6 @@
 
 @interface NSString (KSParser)
 
-+ (NSString *)KS_parse:(id)object;
++ (NSString *)ks_parse:(id)object;
 
 @end

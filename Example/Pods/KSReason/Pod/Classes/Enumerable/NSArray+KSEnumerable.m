@@ -14,7 +14,7 @@
 
 #pragma mark - Iterating
 
-- (void)KS_each:(KSIterableEachBlock)block
+- (void)ks_each:(KSIterableEachBlock)block
 {
     for (id object in self)
     {
@@ -22,7 +22,7 @@
     }
 }
 
-- (void)KS_eachi:(KSIterableEachIBlock)block
+- (void)ks_eachi:(KSIterableEachIBlock)block
 {
     NSUInteger index = 0;
     for (id object in self)
@@ -35,7 +35,7 @@
 
 #pragma mark - Map
 
-- (instancetype)KS_map:(KSIterableMapBlock)block
+- (instancetype)ks_map:(KSIterableMapBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -48,7 +48,7 @@
     return results;
 }
 
-- (instancetype)KS_mapi:(KSIterableMapIBlock)block
+- (instancetype)ks_mapi:(KSIterableMapIBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -66,7 +66,7 @@
 
 #pragma mark - Reduce
 
-- (id)KS_reduce:(KSIterableReduceBlock)block memo:(id)memo
+- (id)ks_reduce:(KSIterableReduceBlock)block memo:(id)memo
 {
     for (id object in self)
     {
@@ -76,7 +76,7 @@
     return memo;
 }
 
-- (id)KS_reducei:(KSIterableReduceIBlock)block memo:(id)memo
+- (id)ks_reducei:(KSIterableReduceIBlock)block memo:(id)memo
 {
     NSUInteger index = 0;
     for (id object in self)
@@ -91,7 +91,7 @@
 
 #pragma mark - Find
 
-- (id)KS_find:(KSIterableTestBlock)block
+- (id)ks_find:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -105,7 +105,7 @@
 
 #pragma mark - Any
 
-- (BOOL)KS_any:(KSIterableTestBlock)block
+- (BOOL)ks_any:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -118,7 +118,7 @@
 
 #pragma mark - All
 
-- (BOOL)KS_all:(KSIterableTestBlock)block
+- (BOOL)ks_all:(KSIterableTestBlock)block
 {
     for (id object in self)
     {
@@ -131,7 +131,7 @@
 
 #pragma mark - Size
 
-- (NSUInteger)KS_size
+- (NSUInteger)ks_size
 {
     return self.count;
 }
@@ -140,7 +140,7 @@
 
 #pragma mark - Empty
 
-- (BOOL)KS_empty
+- (BOOL)ks_empty
 {
     return !!self.count;
 }
@@ -149,7 +149,7 @@
 
 #pragma mark - Filtering
 
-- (instancetype)KS_filter:(KSIterableTestBlock)block
+- (instancetype)ks_filter:(KSIterableTestBlock)block
 {
     NSMutableArray *results = [NSMutableArray arrayWithCapacity:self.count];
     
@@ -168,9 +168,9 @@
 
 #pragma mark - Rejecting
 
-- (NSArray *)KS_reject:(KSIterableTestBlock)block
+- (NSArray *)ks_reject:(KSIterableTestBlock)block
 {
-    return [self KS_filter:[self KS_negate:block]];
+    return [self ks_filter:[self ks_negate:block]];
 }
 
 
@@ -178,7 +178,7 @@
 
 #pragma mark - Converters
 
-- (NSSet *)KS_set:(KSIterableMapBlock)block
+- (NSSet *)ks_set:(KSIterableMapBlock)block
 {
     NSMutableSet *results = [NSMutableSet setWithCapacity:self.count];
     
@@ -194,7 +194,7 @@
 
 #pragma mark - Negating
 
-- (KSIterableTestBlock)KS_negate:(KSIterableTestBlock)block
+- (KSIterableTestBlock)ks_negate:(KSIterableTestBlock)block
 {
     return ^BOOL (id object) { return !block(object); };
 }
@@ -203,23 +203,23 @@
 
 #pragma mark - Finders
 
-- (id)KS_minimum
+- (id)ks_minimum
 {
-    return [self KS_reduce:^id(id memo, id object) {
+    return [self ks_reduce:^id(id memo, id object) {
         if ([memo compare:object] == NSOrderedAscending) return memo;
         else return object;
     } memo:NULL];
 }
 
-- (id)KS_maximum
+- (id)ks_maximum
 {
-    return [self KS_reduce:^id(id memo, id object) {
+    return [self ks_reduce:^id(id memo, id object) {
         if ([memo compare:object] == NSOrderedDescending) return memo;
         else return object;
     } memo:NULL];
 }
 
-- (id)KS_sample
+- (id)ks_sample
 {
     NSUInteger position = arc4random_uniform((int)self.count);
     

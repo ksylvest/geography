@@ -19,13 +19,13 @@
  @param replacement a replacement.
  @return the resulting string from the replacement.
  */
-- (NSString *)KS_replace:(NSString *)pattern with:(NSString *)replacement;
+- (NSString *)ks_replace:(NSString *)pattern with:(NSString *)replacement;
 
 /**
  Match a regex against a string.
  @param pattern a regex.
  @return a boolean indicating a match.
  */
-- (BOOL)KS_matches:(NSString *)pattern;
+- (BOOL)ks_matches:(NSString *)pattern;
 
 @end

@@ -44,9 +44,9 @@
     NSAssert(!self.is || (self.is && !(self.maximum || self.minimum)), @"'length' cannot have '%@' or '%@' with '%@'",
              KSValidate.minimum, KSValidate.maximum, KSValidate.is);
     
-    BOOL is = !self.is || [KSValidator length:attribute is:[NSNumber KS_integer:self.is]];
-    BOOL minimum = !self.minimum || [KSValidator length:attribute minimum:[NSNumber KS_integer:self.minimum]];
-    BOOL maximum = !self.maximum || [KSValidator length:attribute minimum:[NSNumber KS_integer:self.minimum]];
+    BOOL is = !self.is || [KSValidator length:attribute is:[NSNumber ks_integer:self.is]];
+    BOOL minimum = !self.minimum || [KSValidator length:attribute minimum:[NSNumber ks_integer:self.minimum]];
+    BOOL maximum = !self.maximum || [KSValidator length:attribute minimum:[NSNumber ks_integer:self.minimum]];
     
     if (!is)
     {

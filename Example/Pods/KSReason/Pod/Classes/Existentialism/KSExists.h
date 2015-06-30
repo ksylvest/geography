@@ -10,6 +10,6 @@
 
 @protocol KSExists <NSObject>
 
-- (BOOL)KS_exists;
+- (BOOL)ks_exists;
 
 @end

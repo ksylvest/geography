@@ -45,7 +45,7 @@ NSString * const KSCollectionParametersKey = @"parameters";
 
 - (void)set:(NSString *)attribute value:(NSString *)value
 {
-    self.parameters = [self.parameters KS_extend:@{ attribute: value }];
+    self.parameters = [self.parameters ks_extend:@{ attribute: value }];
 }
 
 - (BOOL)has:(NSString *)attribute

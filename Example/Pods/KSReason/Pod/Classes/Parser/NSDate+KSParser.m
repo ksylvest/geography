@@ -15,9 +15,9 @@
 
 #pragma mark - Parsing
 
-+ (NSDate *)KS_parse:(id)object
++ (NSDate *)ks_parse:(id)object
 {
-    object = [super KS_parse:object];
+    object = [super ks_parse:object];
     if (!object || [object isKindOfClass:[NSDate class]]) return object;
     
     static NSDateFormatter *customDateFormatter = nil;

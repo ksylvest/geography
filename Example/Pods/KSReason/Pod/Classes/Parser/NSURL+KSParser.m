@@ -15,9 +15,9 @@
 
 #pragma mark - Parsing
 
-+ (NSURL *)KS_parse:(id)object
++ (NSURL *)ks_parse:(id)object
 {
-    object = [super KS_parse:object];
+    object = [super ks_parse:object];
     if (!object || [object isKindOfClass:[NSURL class]]) return object;
     
     return [NSURL URLWithString:object];

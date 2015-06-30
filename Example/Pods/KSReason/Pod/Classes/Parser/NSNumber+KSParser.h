@@ -10,13 +10,13 @@
 
 @interface NSNumber (KSParser)
 
-+ (NSNumber *)KS_parse:(id)object;
++ (NSNumber *)ks_parse:(id)object;
 
-+ (NSInteger)KS_integer:(id)object;
-+ (BOOL)KS_bool:(id)object;
++ (NSInteger)ks_integer:(id)object;
++ (BOOL)ks_bool:(id)object;
 
-+ (float)KS_float:(id)object;
-+ (double)KS_double:(id)object;
-+ (long)KS_long:(id)object;
++ (float)ks_float:(id)object;
++ (double)ks_double:(id)object;
++ (long)ks_long:(id)object;
 
 @end

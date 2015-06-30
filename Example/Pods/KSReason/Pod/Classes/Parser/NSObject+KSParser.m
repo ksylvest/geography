@@ -14,7 +14,7 @@
 
 #pragma mark - Parsing
 
-+ (NSDate *)KS_parse:(id)object;
++ (NSDate *)ks_parse:(id)object;
 {
     if ([object isKindOfClass:[NSNull class]]) return NULL;
     else return object;
