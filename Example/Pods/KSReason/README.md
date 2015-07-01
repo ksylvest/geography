@@ -40,6 +40,32 @@ KSCollection *collection = [KSCollection new];
 collection.models;
 ```
 
+#### Events
+
+```objc
+KSModel *model = [KSModel new];
+
+void (^callback)(KSModel *) = ^(KSModel *model) {
+  // ...
+};
+
+[model on:@"change" callback:callback];
+[model parse:@{ @"id": @"...", @"title": @"...", @"description": @"..." }];
+[model off:@"change" callback:callback];
+```
+
+```objc
+KSCollection *collection = [KSCollection new];
+
+void (^callback)(KSCollection *) = ^(KSCollection *collection) {
+  // ...
+};
+
+[collection on:@"reset" callback:callback];
+[model parse:@[@{ @"id": @"...", @"title": @"...", @"description": @"..." }]];
+[collection off:@"reset" callback:callback];
+```
+
 ### Enumerable
 
 #### Iterating

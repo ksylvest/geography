@@ -13,7 +13,5 @@
 #import <KSReason/KSAssociation.h>
 #import <KSReason/KSModel.h>
 #import <KSReason/KSCollection.h>
-#import <KSReason/KSIdentifiable.h>
-#import <KSReason/KSValidator.h>
 
 #endif

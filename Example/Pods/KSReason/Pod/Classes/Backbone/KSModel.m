@@ -10,11 +10,14 @@
 
 #import "KSModel.h"
 
-NSString * const KSCollectionParametersKey = @"parameters";
+#import "NSObject+KSEvents.h"
 
-@interface KSModel () <NSCoding>
+NSString * const KSModelID = @"id";
+NSString * const KSModelAttributesKey = @"attributes";
 
-@property (nonatomic, strong) NSDictionary *parameters;
+@interface KSModel ()
+
+@property (nonatomic, strong) NSDictionary *attributes;
 
 @end
 
@@ -24,14 +27,26 @@ NSString * const KSCollectionParametersKey = @"parameters";
 
 #pragma mark - Parsable
 
-- (void)parse:(NSDictionary *)parameters
+- (void)parse:(NSDictionary *)attributes
 {
-    self.parameters = parameters;
+    self.attributes = attributes;
+    
+    [self trigger:@"change"];
+    for (NSString *attribute in attributes) [self trigger:[NSString stringWithFormat:@"change:%@", attribute]];
 }
 
 - (NSDictionary *)parameterize
 {
-    return self.parameters;
+    return self.attributes;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Identifiable
+
+- (id)identifier
+{
+    return [self get:KSModelID];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -40,17 +55,37 @@ NSString * const KSCollectionParametersKey = @"parameters";
 
 - (id)get:(NSString *)attribute
 {
-    return self.parameters[attribute];
+    return self.attributes[attribute];
 }
 
 - (void)set:(NSString *)attribute value:(NSString *)value
 {
-    self.parameters = [self.parameters ks_extend:@{ attribute: value }];
+    self.attributes = [self.attributes ks_extend:@{ attribute: value }];
+
+    [self trigger:@"change"];
+    [self trigger:[NSString stringWithFormat:@"change:%@", attribute]];
+}
+
+- (void)unset:(NSString *)attribute
+{
+    self.attributes = [self.attributes ks_filter:^BOOL(NSString *key, id value) {
+        return ![key isEqualToString:attribute];
+    }];
+    
+    [self trigger:@"change"];
+    [self trigger:[NSString stringWithFormat:@"change:%@", attribute]];
 }
 
 - (BOOL)has:(NSString *)attribute
 {
-    return !!self.parameters[attribute];
+    return self.attributes[attribute] && self.attributes[attribute] != [NSNull null];
+}
+
+- (void)clear
+{
+    self.attributes = [NSDictionary dictionary];
+    
+    [self trigger:@"change"];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +120,7 @@ NSString * const KSCollectionParametersKey = @"parameters";
     
     if (self)
     {
-        self.parameters = [decoder decodeObjectForKey:KSCollectionParametersKey];
+        self.attributes = [decoder decodeObjectOfClass:[NSArray class] forKey:KSModelAttributesKey];
     }
     
     return self;
@@ -93,7 +128,19 @@ NSString * const KSCollectionParametersKey = @"parameters";
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [encoder encodeObject:self.parameters forKey:KSCollectionParametersKey];
+    [encoder encodeObject:self.attributes forKey:KSModelAttributesKey];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Copying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    KSModel *copy = [[[self class] allocWithZone:zone] init];
+    copy.attributes = [self.attributes copyWithZone:zone];
+
+    return copy;
 }
 
 @end

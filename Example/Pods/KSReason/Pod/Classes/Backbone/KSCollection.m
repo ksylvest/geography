@@ -11,9 +11,11 @@
 #import "KSCollection.h"
 #import "KSModel.h"
 
+#import "NSObject+KSEvents.h"
+
 NSString * const KSCollectionModelsKey = @"models";
 
-@interface KSCollection () <NSCoding>
+@interface KSCollection ()
 
 @property (nonatomic, strong) NSArray *models;
 
@@ -44,18 +46,24 @@ NSString * const KSCollectionModelsKey = @"models";
     return self.models.count;
 }
 
+- (void)reset:(NSArray *)models
+{
+    self.models = models;
+    [self trigger:@"reset"];
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 #pragma mark - Parsable
 
 - (void)parse:(NSArray *)parameters
 {
-    self.models = [parameters ks_map:^NSObject <KSParsable> *(NSDictionary *params) {
+    [self reset:[parameters ks_map:^NSObject <KSParsable> *(NSDictionary *params) {
         NSObject <KSParsable> *object = [[self kind] new];
         [object parse:params];
         
         return object;
-    }];
+    }]];
 }
 
 - (NSArray *)parameterize
@@ -97,7 +105,7 @@ NSString * const KSCollectionModelsKey = @"models";
     
     if (self)
     {
-        self.models = [decoder decodeObjectForKey:KSCollectionModelsKey];
+        self.models = [decoder decodeObjectOfClass:[NSArray class] forKey:KSCollectionModelsKey];
     }
     
     return self;
@@ -106,6 +114,18 @@ NSString * const KSCollectionModelsKey = @"models";
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.models forKey:KSCollectionModelsKey];
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+#pragma mark - Copying
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    KSCollection *copy = [[[self class] allocWithZone:zone] init];
+    copy.models = [self.models copyWithZone:zone];
+    
+    return copy;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
